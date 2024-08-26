@@ -1,0 +1,92 @@
+/* styles.css */
+
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    color: #333;
+    background-color: #f4f4f4;
+}
+
+.container {
+    width: 90%;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+header {
+    background-color: #1e3a8a; /* Blue color */
+    color: white;
+    text-align: center;
+    padding: 50px 0;
+    position: relative;
+}
+
+header .logo {
+    position: absolute;
+    top: 50px;
+    left: 20px;
+}
+
+header .logo img {
+    height: 80px;
+    width: auto;
+}
+
+header h1 {
+    font-size: 3em;
+    margin: 0;
+}
+
+header p {
+    font-size: 1.2em;
+    margin: 10px 0 0;
+}
+
+section {
+    padding: 50px 0;
+    text-align: center;
+}
+
+#about {
+    background-color: #d1fae5; /* Light green background */
+}
+
+#about p {
+    max-width: 810px;
+    margin: 20px auto 0;
+    text-align: left;
+}
+
+#experience {
+    background-color: #f6f6f6;
+}
+
+#experience p {
+    max-width: 810px;
+    margin: 20px auto;
+    text-align: left;
+    line-height: 1.6;
+}
+
+#inspiration {
+    background-color: #fb923c; /* Orange color */
+    color: white;
+}
+
+#inspiration p {
+    max-width: 810px;
+    margin: 20px auto 0;
+    text-align: left;
+}
+
+footer {
+    background-color: #1e3a8a; /* Blue color */
+    color: white;
+    text-align: center;
+    padding: 20px 0;
+}
+
+footer p {
+    margin: 0;
+}
