@@ -43,6 +43,28 @@ header p {
     margin: 10px 0 0;
 }
 
+/* Responsive adjustments */
+@media (max-width: 600px) {
+    header {
+        padding: 20px 0; /* Reduce padding on smaller screens */
+    }
+
+    header .logo {
+        position: static; /* Reset position for logo to make it flow with content */
+        margin-bottom: 10px; /* Add some margin below logo */
+        text-align: center; /* Center logo on small screens */
+    }
+
+    header h1 {
+        font-size: 2em; /* Reduce font size for header text */
+    }
+
+    header p {
+        font-size: 1em; /* Reduce font size for subheading text */
+    }
+}
+
+
 section {
     padding: 50px 0;
     text-align: center;
