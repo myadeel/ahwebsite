@@ -1,0 +1,2772 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Adeel H. - IT Solutions Architect</title>
+    <!-- Add Favicon -->
+    <link rel="icon" href="favicon.ico" type="image/x-icon">
+  <!-- AOS CSS -->
+  <link
+    rel="stylesheet"
+    href="https://unpkg.com/aos@2.3.1/dist/aos.css"
+  />
+
+  <style>
+    /* Resets & Base Styles */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      scroll-behavior: smooth; /* Enables smooth scrolling */
+    }
+    body {
+      font-family: Arial, sans-serif;
+      font-size: 16px;
+      background-color: #ffffff;
+      color: #333333;
+      display: flex;
+      min-height: 100vh;
+      transition: background-color 0.3s, color 0.3s;
+      position: relative; /* so we can position the go-to-top button absolutely */
+    }
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+
+    /* Sidebar Styles */
+    .sidebar {
+      position: sticky;
+      top: 0;
+      height: 100vh;
+      overflow-y: auto;
+      background-color: #4caf7f;
+      width: 280px;
+      padding: 2rem 1rem;
+      display: flex;
+      flex-direction: column;
+      transition: background-color 0.3s;
+    }
+    .profile-image {
+  width: 160px;
+  height: 160px;
+  border-radius: 50%;
+  overflow: hidden;
+  margin: 0 auto 1rem auto; /* center horizontally, plus spacing at the bottom */
+  display: flex;            /* so we can center the <img> if needed */
+  align-items: center;
+  justify-content: center;
+
+}
+
+.profile-image img {
+  /* Let the image fill the container without skewing */
+  max-width: 100%;
+  max-height: 100%;
+  border-radius: 15%;       /* ensure the image itself is round if it overflows */
+  object-fit: cover;        /* crop rather than distort */
+  object-position: center;  /* center the face or subject if possible */
+    }
+    .sidebar h1 {
+      font-size: 1.4rem;
+      color: #ffffff;
+      text-align: center;
+      margin-bottom: 0.5rem;
+    }
+    .sidebar .tagline {
+      font-size: 0.9rem;
+      color: #ffffff;
+      text-align: center;
+      margin-bottom: 1rem;
+      line-height: 1.4;
+    }
+    .social-links {
+      display: flex;
+      justify-content: center;
+      gap: 0.5rem;
+      margin-bottom: 2rem;
+    }
+    .social-links a {
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      background-color: rgba(255, 255, 255, 0.3);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #ffffff;
+      transition: background-color 0.2s, transform 0.2s;
+    }
+    .social-links a:hover {
+      background-color: rgba(255, 255, 255, 0.5);
+      transform: translateY(-2px);
+    }
+
+    /* Sidebar Menu */
+    .sidebar nav ul {
+      list-style: none;
+    }
+    .sidebar nav ul li {
+      margin: 1rem 0;
+    }
+    .sidebar nav ul li a {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      color: #ffffff;
+      font-weight: 500;
+      padding: 0.5rem 1rem;
+      border-radius: 4px;
+      transition: background-color 0.2s;
+    }
+    .sidebar nav ul li a:hover {
+      background-color: rgba(255, 255, 255, 0.15);
+    }
+    .nav-icon {
+      width: 20px;
+      height: 20px;
+      fill: #ffffff;
+      flex-shrink: 0;
+    }
+
+    /* Custom Dark Mode Toggle (Fancy Switch) */
+    .dark-mode-toggle {
+      margin-top: auto;
+      padding-top: 2rem; /* spacing from the nav */
+      text-align: center;
+    }
+    .toggle-switch {
+      position: relative;
+      display: inline-block;
+      width: 50px;
+      height: 26px;
+    }
+    .toggle-switch input {
+      opacity: 0;
+      width: 0;
+      height: 0;
+    }
+    .slider {
+      position: absolute;
+      cursor: pointer;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background-color: rgba(255, 255, 255, 0.3);
+      border-radius: 34px;
+      transition: .4s;
+    }
+    .slider:before {
+      position: absolute;
+      content: "";
+      height: 18px;
+      width: 18px;
+      left: 4px;
+      bottom: 4px;
+      background-color: #ffffff;
+      transition: .4s;
+      border-radius: 50%;
+    }
+    input:checked + .slider {
+      background-color: rgba(255, 255, 255, 0.7);
+    }
+    input:checked + .slider:before {
+      transform: translateX(24px);
+    }
+
+    /* Main Content */
+    .main-content {
+      flex: 1;
+      padding: 2rem 3rem;
+    }
+
+    /* Header Section */
+    .header-section {
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+      margin-bottom: 2rem;
+    }
+    .header-section h2 {
+      font-size: 1.6rem;
+      font-weight: 700;
+      margin-bottom: 0.25rem;
+    }
+    .header-section .subheading {
+      font-size: 1rem;
+      color: #555555;
+      line-height: 1.4;
+    }
+    .main-content p {
+      line-height: 1.6;
+      margin-bottom: 1.5rem;
+    }
+
+    /* Section Headings + Icons */
+    section {
+      margin-top: 3rem;
+    }
+    .section-heading {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      margin-bottom: 1rem;
+    }
+    .section-heading svg {
+      width: 24px;
+      height: 24px;
+      fill: #4caf7f;
+      flex-shrink: 0;
+    }
+    .section-heading h2 {
+      font-size: 1.4rem;
+      font-weight: 700;
+    }
+
+    /* Trail of Triumphs - List Layout with Icons */
+    .triumphs-list {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+    }
+    .triumphs-list li {
+      display: flex;
+      align-items: flex-start;
+      gap: 0.75rem;
+      margin-bottom: 1rem;
+      border-left: 3px solid #4caf7f;
+      padding-left: 0.5rem;
+    }
+    .triumphs-list li svg {
+      width: 24px;
+      height: 24px;
+      fill: #4caf7f;
+      margin-top: 0.25rem;
+      flex-shrink: 0;
+    }
+    .triumphs-list li div {
+      line-height: 1.6;
+    }
+
+    /* Competencies Grid Layout */
+    .competencies-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: 1.5rem;
+      margin-top: 1rem;
+    }
+    .competency-card {
+      background-color: #f9f9f9;
+      border: 1px solid #eee;
+      border-radius: 4px;
+      padding: 1rem;
+      transition: background-color 0.3s;
+    }
+    .competency-card:hover {
+      background-color: #f1f1f1;
+    }
+    .competency-card .icon-wrapper {
+      margin-bottom: 0.5rem;
+    }
+    .competency-card svg {
+      width: 32px;
+      height: 32px;
+      fill: #4caf7f;
+    }
+    .competency-card h3 {
+      margin-bottom: 0.5rem;
+      font-size: 1.1rem;
+      font-weight: 600;
+    }
+    .competency-card p {
+      font-size: 0.95rem;
+      line-height: 1.4;
+      color: #555555;
+    }
+
+    /* --- Animated Skill Meters (Implementation #6) --- */
+    .skill-meter-container {
+      margin-top: 0.75rem;
+    }
+    .skill-meter-label {
+      font-size: 0.85rem;
+      margin-bottom: 0.3rem;
+      color: #333;
+      font-weight: 600;
+    }
+    .skill-meter {
+      background-color: #ddd;
+      border-radius: 4px;
+      overflow: hidden;
+      height: 8px;
+      position: relative;
+    }
+    .skill-meter-fill {
+      background-color: #4caf7f;
+      width: 0%;
+      height: 100%;
+      transition: width 1.2s ease-in-out;
+    }
+
+    /* Certifications Section */
+    .certifications-section {
+      margin-top: 3rem;
+    }
+    .certifications-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 2rem;
+      align-items: center;
+    }
+    .certifications-list .cert-item {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+    }
+    .certifications-list .cert-item img {
+      width: 80px;
+      height: auto;
+      margin-bottom: 0.5rem;
+      transition: transform 0.2s;
+    }
+    .certifications-list .cert-item img:hover {
+      transform: scale(1.05);
+    }
+    .certifications-list .cert-item span {
+      font-weight: 600;
+      color: #555;
+    }
+
+    /* Personality Section */
+    .personality-section {
+      margin-top: 3rem;
+    }
+    .personality-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+      gap: 1.5rem;
+    }
+    .personality-card {
+      background-color: #f9f9f9;
+      border-radius: 6px;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+      padding: 1rem;
+      transition: background-color 0.3s;
+    }
+    .personality-card:hover {
+      background-color: #f1f1f1;
+    }
+    .personality-card svg {
+      width: 32px;
+      height: 32px;
+      fill: #4caf7f;
+      margin-bottom: 0.5rem;
+    }
+    .personality-card h3 {
+      font-size: 1.1rem;
+      margin-bottom: 0.5rem;
+      font-weight: 600;
+    }
+    .personality-card p {
+      font-size: 0.95rem;
+      color: #555;
+      line-height: 1.4;
+    }
+
+    /* Tech Manifesto (Implementation #8) */
+    .manifesto-section {
+      margin-top: 3rem;
+      padding: 1rem 1.5rem;
+      background-color: #fdfdfd;
+      border-radius: 6px;
+      border: 1px solid #eee;
+    }
+    .manifesto-section ul {
+      list-style-type: disc;
+      margin-left: 1.5rem;
+      color: #555;
+    }
+    .manifesto-section ul li {
+      margin-bottom: 0.75rem;
+      line-height: 1.6;
+    }
+
+    /* Go to Top Button */
+    #goTopBtn {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      background-color: #4caf7f;
+      color: #fff;
+      padding: 0.6rem 0.8rem;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      font-size: 0.9rem;
+      display: flex;
+      align-items: center;
+      gap: 0.3rem;
+      z-index: 999; /* to ensure it's on top */
+    }
+    #goTopBtn:hover {
+      background-color: #43a26c;
+    }
+    #goTopBtn svg {
+      width: 16px;
+      height: 16px;
+      fill: #fff;
+    }
+
+    /* Dark Mode Classes */
+    body.dark-mode {
+      background-color: #222222;
+      color: #f0f0f0;
+    }
+    body.dark-mode .sidebar {
+      background-color: #333333;
+    }
+    body.dark-mode .sidebar nav ul li a:hover {
+      background-color: rgba(255, 255, 255, 0.1);
+    }
+    body.dark-mode .main-content .header-section .subheading {
+      color: #dddddd;
+    }
+    body.dark-mode .triumphs-list li {
+      border-left-color: #88dca3;
+    }
+    body.dark-mode .triumphs-list li svg {
+      fill: #88dca3;
+    }
+    body.dark-mode .competency-card {
+      background-color: #444444;
+      border: 1px solid #666;
+    }
+    body.dark-mode .competency-card:hover {
+      background-color: #3a3a3a;
+    }
+    body.dark-mode .competency-card p {
+      color: #cccccc;
+    }
+    body.dark-mode .personality-card {
+      background-color: #444;
+      color: #f0f0f0;
+      box-shadow: none;
+    }
+    body.dark-mode .personality-card:hover {
+      background-color: #3a3a3a;
+    }
+    body.dark-mode .personality-card p {
+      color: #e6e6e6;
+    }
+    body.dark-mode .certifications-list .cert-item span {
+      color: #f0f0f0;
+    }
+    body.dark-mode .slider {
+      background-color: rgba(255, 255, 255, 0.2);
+    }
+    input:checked + .slider {
+      background-color: rgba(255, 255, 255, 0.5);
+    }
+    body.dark-mode .quiz-section {
+      background-color: #444;
+      border-color: #666;
+    }
+    body.dark-mode .quiz-section p,
+    body.dark-mode .quiz-section label {
+      color: #e6e6e6;
+    }
+    body.dark-mode .manifesto-section {
+      background-color: #444;
+      border-color: #666;
+    }
+    body.dark-mode .manifesto-section ul li {
+      color: #ccc;
+    }
+    body.dark-mode .skill-meter {
+      background-color: #666;
+    }
+    body.dark-mode .skill-meter-fill {
+      background-color: #88dca3;
+    }
+  </style>
+</head>
+<body>
+  <!-- Sidebar -->
+  <aside class="sidebar">
+    <div class="profile-image">
+      <img src="./logo.jpeg" alt="Profile Photo" />
+    </div>
+    <h1>Adeel Hussain</h1>
+    <div class="tagline">
+      Innovator &amp; Visionary IT Architect <br />
+      Shaping Technology for a Better Tomorrow
+    </div>
+
+    <!-- Social Icons (Only LinkedIn) -->
+    <div class="social-links">
+      <a href="#" title="LinkedIn">
+        <svg viewBox="0 0 448 512">
+          <path d="M100.28 448H7.4V148.9h92.88zM53.79 108.1A53.9 53.9 
+                   0 1 1 53.8 0a53.9 53.9 0 1 1-.01 108.1zM447.9 
+                   448h-92.68V302.4c0-34.7-.7-79.3-48.3-79.3 
+                   -48.3 0-55.7 37.8-55.7 76.8V448h-92.7V148.9h89V196h1.3 
+                   c12.4-23.5 42.6-48.3 87.8-48.3 94 0 111.2 61.9 111.2 
+                   142.3V448z"/>
+        </svg>
+      </a>
+    </div>
+
+    <!-- Sidebar Menu -->
+    <nav>
+      <ul>
+        <li>
+          <a href="#essence">
+            <svg class="nav-icon" viewBox="0 0 448 512">
+              <path d="M313.6 304h-16.7c-22.2 10.3
+                       -46.7 16-72.9 16s-50.7
+                       -5.7-72.9-16h-16.7C62.1 304
+                       0 366.1 0 442.7V464c0
+                       26.5 21.5 48 48 48h352c
+                       26.5 0 48-21.5 48-48v
+                       -21.3c0-76.6-62.1-138.7
+                       -134.4-138.7zM224 272c57 
+                       0 103.5-46.5 103.5-103.5S281 
+                       65 224 65 120.5 111.5 
+                       120.5 168.5 167 272 224 
+                       272z"/>
+            </svg>
+            The Essence of Me
+          </a>
+        </li>
+        <li>
+          <a href="#triumphs">
+            <svg class="nav-icon" viewBox="0 0 448 512">
+              <path d="M400 64h-48V15.9C352 7.1 
+                       344.9 0 336 0h-224c
+                       -8.9 0-16 7.1-16 
+                       15.9V64H48c-26.5 0
+                       -48 21.5-48 48v64c0
+                       26.4 21.2 47.8 47.6 
+                       48 1.1 0 2.2.1 
+                       3.4.1 23.5 0 43.6
+                       -16.4 48.9-38.8 9.8 
+                       4.5 21.6 7.7 33.1 7.7 
+                       23.7 0 44.4-12.9 56
+                       -32.2 11.6 19.3 32.2 
+                       32.2 56 32.2 23.7 
+                       0 44.4-12.9 56-32.2 
+                       11.6 19.3 32.2 
+                       32.2 56 32.2 11.5 0 
+                       23.3-3.2 33.1-7.7 
+                       5.3 22.4 25.4 
+                       38.8 48.9 38.8 1.2 
+                       0 2.3 0 3.4-.1C426.8 
+                       223.8 448 202.4 
+                       448 176V112c0-26.5
+                       -21.5-48-48-48z"/>
+            </svg>
+            Trail of Triumphs
+          </a>
+        </li>
+        <li>
+          <a href="#inspiration">
+            <svg class="nav-icon" viewBox="0 0 352 512">
+              <path d="M96 48c0-8.84 
+                       7.16-16 16-16H240c8.8
+                       0 16 7.16 16 16V66.88C308.1
+                       85.75 352 142 352 208c0
+                       60.4-37.7 111.3-90.7 
+                       130.1 2.2 5.8 3.7 
+                       12.2 4.2 19.1l.3 
+                       5.6c.5 10.1 9.3
+                       18.2 19.4 18.2H296
+                       c13.3 0 24 10.7 24 
+                       24c0 13.3-10.7 24
+                       -24 24H56c-13.25 0
+                       -24-10.7-24-24c
+                       0-13.3 10.75-24 
+                       24-24h14.8c10.1 
+                       0 18.9-8.1 
+                       19.4-18.2l.3-5.6c
+                       .4-7 1.9-13.3 
+                       4.2-19.1C41.7 
+                       319.3 4 268.4 
+                       4 208C4 142 47 
+                       85.75 96 66.88V48z"/>
+            </svg>
+            Inspiration &amp; Vision
+          </a>
+        </li>
+        <li>
+          <a href="#competencies">
+            <svg class="nav-icon" viewBox="0 0 512 512">
+              <path d="M464 128c0-8.8
+                       -7.2-16-16-16h-48.4
+                       C386 49.4 321.1 
+                       0 248 0S110 49.4 
+                       96.4 112H48c-8.8 
+                       0-16 7.2-16 
+                       16v128c0 2.2.5 
+                       4.4 1.3 6.4l48 
+                       112c2.5 5.8 
+                       8.2 9.6 14.5 
+                       9.6H152v64c0 
+                       8.8 7.2 16
+                       16 16h64c8.8 
+                       0 16-7.2 
+                       16-16v-64h56.2
+                       c6.3 0 12-3.8 
+                       14.5-9.6l48
+                       -112c.9-2 
+                       1.3-4.2 
+                       1.3-6.4V128zM248
+                       48c54.4 0 
+                       100.6 33.6 
+                       116.5 80H131.5
+                       c15.9-46.4 
+                       62.1-80 
+                       116.5-80z"/>
+            </svg>
+            Core Competencies
+          </a>
+        </li>
+        <li>
+          <a href="#certifications">
+            <svg class="nav-icon" viewBox="0 0 512 512">
+              <path d="M272 176c0 
+                       17.6-14.4 32-32 
+                       32s-32-14.4
+                       -32-32 14.4-32 
+                       32-32s32 14.4
+                       32 32zM256 0C394.9
+                       0 512 113.1 
+                       512 256C512 
+                       394.9 398.9 512
+                       256 512C117.1 
+                       512 0 398.9 0 
+                       256C0 113.1 
+                       113.1 0 256 
+                       0zM256 32C128.9 
+                       32 32 128.9 
+                       32 256C32 383.1
+                       128.9 480 256 
+                       480C383.1 
+                       480 480 383.1
+                       480 256C480 
+                       128.9 383.1 
+                       32 256 32z"/>
+            </svg>
+            Certifications
+          </a>
+        </li>
+        <li>
+          <a href="#personality">
+            <svg class="nav-icon" viewBox="0 0 640 512">
+              <path d="M96 128a96 96 
+                       0 1 1 192 
+                       0a96 96 0 
+                       1 1-192 0zM48 
+                       272H240c8.8 
+                       0 16 7.2 
+                       16 16c0 79.5
+                       -64.5 144
+                       -144 144c
+                       -39.1 0
+                       -74.7-15.3
+                       -100.4-40
+                       c-6.2-6.2
+                       -7.3-15.7
+                       -2.6-23.1S21.9 
+                       360 32 360h16c
+                       35.3 0 64-28.7
+                       64-64c0-8.8 
+                       7.2-16 
+                       16-16zm304 
+                       16c0-88.4 
+                       71.6-160 
+                       160-160s
+                       160 71.6 
+                       160 160c0 
+                       56.4-29.5
+                       105.9-74 
+                       134.1c-5 
+                       3.1-8 8.6
+                       -8 14.5V456c0 
+                       13.3-10.7 
+                       24-24 24H400c
+                       -13.3 0
+                       -24-10.7
+                       -24-24V416c0
+                       -5.9-3.1
+                       -11.4-8
+                       -14.5c-44.5
+                       -28.2-74
+                       -77.7-74
+                       -134.1z"/>
+            </svg>
+            Personality
+          </a>
+        </li>
+        <li>
+          <a href="#contact">
+            <svg class="nav-icon" viewBox="0 0 512 512">
+              <path d="M502.3 190.8 
+                       327.4 338c
+                       -15.3 13.6
+                       -38.5 13.6
+                       -53.8 0L9.7 
+                       190.8C3.7 
+                       185.8 0 
+                       178.7 0 
+                       171.3V128c0
+                       -35.3 28.7
+                       -64 64-64H448c
+                       35.3 0 64 28.7
+                       64 64v43.3c0 
+                       7.4-3.7 
+                       14.6-9.7 
+                       19.5zM320 
+                       287.5l182.4 
+                       154.2c7.1 
+                       6 9.6 15.7 
+                       6.2 24.3S496 
+                       480 488 
+                       480H24c-8 
+                       0-15.3-4.9
+                       -18.6-12.1s
+                       -.9-18.3 
+                       6.2-24.3
+                       L214.4 
+                       287.5l20.5 
+                       17.3c22.1 
+                       18.7 54.6 
+                       18.7 76.7 
+                       0l20.5
+                       -17.3z"/>
+            </svg>
+            Contact Me
+          </a>
+        </li>
+      </ul>
+    </nav>
+
+    <!-- Dark Mode Toggle -->
+    <div class="dark-mode-toggle">
+      <label class="toggle-switch">
+        <input type="checkbox" id="darkModeToggle" />
+        <span class="slider"></span>
+      </label>
+    </div>
+  </aside>
+
+  <!-- Main Content -->
+  <main class="main-content">
+    <!-- Header with tagline/description -->
+    <div class="header-section" data-aos="fade-up" data-aos-duration="700">
+      <h2>Adeel Hussain</h2>
+      <div class="subheading">
+        15+ years of experience driving IT transformation and delivering innovative solutions 
+        that solve complex business challenges.
+      </div>
+    </div>
+
+    <!-- The Essence of Me -->
+    <section id="essence" data-aos="fade-up" data-aos-duration="700">
+      <div class="section-heading">
+        <svg viewBox="0 0 448 512">
+          <path d="M224 256A128 128 0 1 
+                   0 96 128a128 128 0 
+                   0 0 128 128zm89.6 
+                   48h-16.7c-22.2 10.3
+                   -46.7 16-72.9 
+                   16s-50.7-5.7-72.9
+                   -16h-16.7A134.4 
+                   134.4 0 0 0 0 438.4V464
+                   a48 48 0 0 0 48 
+                   48H400a48 48 
+                   0 0 0 48-48v
+                   -25.6A134.4 134.4 
+                   0 0 0 313.6 
+                   304z"/>
+        </svg>
+        <h2>The Essence of Me</h2>
+      </div>
+      <p>
+        A seasoned IT architect with a passion for crafting secure, scalable solutions 
+        in the cloud and beyond. Transforms complex challenges into streamlined infrastructures, 
+        while leading teams to innovate and excel. Thrives on creativity and technical prowess, 
+        blending them to shape the future of IT.
+      </p>
+      <p>
+        Believing in empowering people through technology, creating environments where businesses 
+        can thrive, and individuals can reach their fullest potential. Expertise spans cloud computing, 
+        cybersecurity, AI integration, IT strategy, and building cohesive teams that bring out the 
+        best in each other.
+      </p>
+    </section>
+
+    <!-- Trail of Triumphs -->
+    <section id="triumphs" data-aos="fade-up" data-aos-duration="700">
+      <div class="section-heading">
+        <svg viewBox="0 0 512 512">
+          <path d="M512 64c0 35.3-28.7
+                   64-64 64v32c0 53
+                   -43 96-96 96h-32v19.2
+                   l21.6 172.8c1
+                   8.1-5 15.2-13.1
+                   16.3c-4.8 .6
+                   -8.6 4.4
+                   -9.2 9.2l-2.7
+                   21.6c-1 
+                   8.1-8.2 14.1
+                   -16.3 13.1
+                   c-38.4-4.8
+                   -71.2-21.5
+                   -98.5-48.7c
+                   -27.2 27.2
+                   -60.1 43.9
+                   -98.5 48.7
+                   c-8.1 1
+                   -15.3-4.9
+                   -16.3-13.1l
+                   -2.7-21.6c
+                   -.6-4.8
+                   -4.4-8.6
+                   -9.2-9.2
+                   c-8.1-1
+                   -14.2-8.2
+                   -13.1-16.3L128
+                   275.2V256H96
+                   c-53 0-96
+                   -43-96-96V112C0
+                   92.7 28.7
+                   64 64 64C64
+                   28.7 92.7 
+                   0 128 0H384
+                   c35.3 0 
+                   64 28.7 
+                   64 64z"/>
+        </svg>
+        <h2>Trail of Triumphs</h2>
+      </div>
+
+      <ul class="triumphs-list">
+        <!-- CTO -->
+        <li data-aos="fade-up" data-aos-duration="600">
+          <svg viewBox="0 0 512 512">
+            <path d="M487.2 315.7l-42.7
+                     -24.6c2.6-15.2 
+                     4.1-30.6 4.1-46.3s-1.4
+                     -31.1-4.1-46.3l42.7
+                     -24.6c11.4-6.5
+                     16.3-19.7 11.7
+                     -31.3l-24-56c
+                     -4.9-11.4
+                     -16.2-18.5
+                     -28.2-17.4
+                     l-49.9 5.8c
+                     -13.2-10.3
+                     -27.4-19.3
+                     -42.4-26.7
+                     l-17.8-48.6C329.9
+                     7.8 318.6 0
+                     306.1 0h-60.2c
+                     -12.5 0
+                     -23.8 7.8
+                     -27.8 19.6l
+                     -17.8 48.6c
+                     -15 7.4
+                     -29.2 16.4
+                     -42.4 26.7l
+                     -49.9-5.8c
+                     -12-1.1
+                     -23.3 6
+                     -28.2 17.4
+                     l-24 56c
+                     -4.7 11.6
+                     .3 24.8 
+                     11.7 31.3l
+                     42.7 24.6C96.3
+                     213.7 95 229 
+                     95 244.7s1.4
+                     31.1 4.1 46.3
+                     l-42.7 24.6c
+                     -11.4 6.5
+                     -16.3 19.7
+                     -11.7 31.3
+                     l24 56c4.9
+                     11.4 16.2
+                     18.5 28.2
+                     17.4l49.9-5.8
+                     c13.2 10.3
+                     27.4 19.3
+                     42.4 26.7l
+                     17.8 48.6c
+                     4 11.8 15.4
+                     19.6 27.8
+                     19.6h60.2c
+                     12.5 0 
+                     23.8-7.8
+                     27.8-19.6l
+                     17.8-48.6c
+                     15-7.4 
+                     29.2-16.4
+                     42.4-26.7l
+                     49.9 5.8c
+                     12 1.1
+                     23.3-6
+                     28.2-17.4
+                     l24-56c
+                     4.7-11.6
+                     -.3-24.8
+                     -11.7-31.3zM256 
+                     336c-44.2 0
+                     -80-35.8
+                     -80-80s35.8
+                     -80 80-80
+                     s80 35.8
+                     80 80s
+                     -35.8 80
+                     -80 80z"/>
+          </svg>
+          <div>
+            <strong>Chief Technology Officer (CTO):</strong> Spearheaded technological advancements, overseeing AI tools, 
+            cloud infrastructure, and cybersecurity measures. Developed a technology roadmap aligning with business objectives 
+            to foster growth and operational efficiency.
+          </div>
+        </li>
+
+        <!-- CIO -->
+        <li data-aos="fade-up" data-aos-duration="600" data-aos-delay="100">
+          <svg viewBox="0 0 512 512">
+            <path d="M496 432H16c-8.8 
+                     0-16 7.2-16 16c0 
+                     17.6 14.4 32 32 
+                     32H496c17.6 0 
+                     32-14.4 
+                     32-32C528
+                     439.2 520.8 432 
+                     512 432zM32 
+                     400H480c8.8 0
+                     16-7.2 16
+                     -16V48c0
+                     -8.8-7.2
+                     -16-16
+                     -16H112c
+                     -4.2 0
+                     -8.3 1.7
+                     -11.3 
+                     4.7L4.7 
+                     132.7C
+                     1.7 135.7
+                     0 139.8
+                     0 144v240C0
+                     392.8 7.2
+                     400 16
+                     400H32zM48 
+                     156.1L147.9
+                     56H464V384H48V156.1zM288 
+                     208C288 
+                     199.2 295.2 
+                     192 304 
+                     192h32c8.8
+                     0 16 7.2
+                     16 16v64H480c8.8 
+                     0 16 7.2
+                     16 16v32c0 
+                     8.8-7.2 
+                     16-16 
+                     16H352c
+                     -4.2 0
+                     -8.3-1.7
+                     -11.3-4.7
+                     L288 236.1
+                     V208zM192
+                     242.7l-17.4
+                     17.4c-3
+                     3-7.1
+                     4.7-11.3
+                     4.7H80C71.2
+                     264 64 256.8
+                     64 248V216C64
+                     207.2 71.2
+                     200 80 
+                     200H144c
+                     4.2 0
+                     8.3 1.7
+                     11.3 4.7
+                     L192 222.1
+                     V242.7z"/>
+          </svg>
+          <div>
+            <strong>Chief Information Officer (CIO):</strong> Optimized the use of IT to deliver business value, 
+            spearheaded data management improvements, and implemented data-driven decision-making processes. 
+            Led digital transformation initiatives, aligning IT capabilities with broader business goals.
+          </div>
+        </li>
+
+        <!-- Cloud Computing Mastery -->
+        <li data-aos="fade-up" data-aos-duration="600" data-aos-delay="200">
+          <svg viewBox="0 0 640 512">
+            <path d="M537.6 226.6C537.4 
+                     225.1 537.2 
+                     223.7 537 
+                     222.2C528.3 
+                     156.4 476 
+                     104.1 410.2 
+                     95.4 406.1 
+                     42.3 358.7 
+                     0 304 0 
+                     251.5 0 
+                     207.2 37.7
+                     198.6 87.1c
+                     -48.5 4.9
+                     -90.3 36.3
+                     -108.3 80.6
+                     C37.5 172.4 
+                     0 213.3 
+                     0 262.4 
+                     0 320.5 
+                     47.5 368 
+                     105.6 368H488
+                     c52.9 0 
+                     96-43.1 
+                     96-96C584
+                     270.8 565.8
+                     245.6 537.6
+                     226.6z"/>
+          </svg>
+          <div>
+            <strong>Cloud Computing Mastery:</strong> Extensive experience with Microsoft 365, Azure, AWS, and Google Workspace. 
+            Successfully migrated over 50+ companies to cloud platforms, reducing costs by 30% 
+            while increasing efficiency and scalability.
+          </div>
+        </li>
+
+        <!-- Cybersecurity Specialist -->
+        <li data-aos="fade-up" data-aos-duration="600" data-aos-delay="300">
+          <svg viewBox="0 0 512 512">
+            <path d="M466.5 83.7 275.1 
+                     3.7c-8.4-3.3
+                     -17.9-3.3-26.3 
+                     0l-191.4 80c
+                     -11.6 4.9
+                     -19.2 16.1
+                     -19.2 28.5 
+                     0 247.9 
+                     167.5 380.4 
+                     221.7 414.3 
+                     9.8 6.6 
+                     22.7 6.6 
+                     32.4 0 
+                     54.2-33.9 
+                     221.7-166.4 
+                     221.7-414.3 
+                     0-12.4
+                     -7.6-23.6
+                     -19.2-28.5z"/>
+          </svg>
+          <div>
+            <strong>Cybersecurity Specialist:</strong> An expert in configuring firewalls/networks, safeguarding infrastructures 
+            against cyber threats. Developed security policies leading to a 60% reduction in incidents 
+            and ensuring full compliance.
+          </div>
+        </li>
+
+        <!-- Team & Project Leadership -->
+        <li data-aos="fade-up" data-aos-duration="600" data-aos-delay="400">
+          <svg viewBox="0 0 640 512">
+            <path d="M96 224c0 
+                     35.3-28.7
+                     64-64 
+                     64S-32 259.3
+                     -32 224
+                     96 288 
+                     96 224zM144
+                     216c-13.3 
+                     0-24 
+                     10.7-24
+                     24v80h288v-64
+                     c0-44.2 
+                     35.8-80
+                     80-80c12.6 
+                     0 24.5
+                     3.1 34.9 
+                     8.6C505.9
+                     101.8 453.7
+                     48 384 48c
+                     -8.8 0-16
+                     7.2-16 
+                     16v48H272V64c
+                     0-17.7
+                     -14.3-32
+                     -32-32c
+                     -70.7 0
+                     -121.9 53.8
+                     -128.9 120.6
+                     C103.5 
+                     152.9 112
+                     160 112
+                     168v48h32V216
+                     c0-13.3
+                     -10.7-24
+                     -24-24zM608
+                     224c0 
+                     35.3-28.7
+                     64-64 
+                     64s-64
+                     -28.7
+                     -64-64
+                     28.7-64
+                     64-64
+                     64 28.7
+                     64 
+                     64zM560 
+                     240h-32v80H256v56.7
+                     c8.7 5 
+                     16.6 11.3
+                     23.6 19H560c
+                     44.2 0 
+                     80-35.8
+                     80-80v
+                     -48C640
+                     250.7 602.4
+                     240 560
+                     240z"/>
+          </svg>
+          <div>
+            <strong>Team &amp; Project Leadership:</strong> Proven track record in IT project management, team leadership, 
+            managing IT helpdesks, developing SharePoint intranets, and overseeing email/hosting services. 
+            Led cross-functional teams of up to 20 members, achieving a 95% client satisfaction rate.
+          </div>
+        </li>
+
+        <!-- Systems and Network Management -->
+        <li data-aos="fade-up" data-aos-duration="600" data-aos-delay="500">
+          <svg viewBox="0 0 512 512">
+            <path d="M464 32H48C21.49
+                     32 0 53.49
+                     0 80V176C0
+                     202.5 21.49
+                     224 48 
+                     224H464C490.5
+                     224 512
+                     202.5 512
+                     176V80C512
+                     53.49 490.5
+                     32 464
+                     32zM80 
+                     144C62.33
+                     144 48
+                     129.7 48
+                     112C48 94.33
+                     62.33 80
+                     80 80C97.67
+                     80 112
+                     94.33 112
+                     112C112
+                     129.7 97.67
+                     144 80
+                     144zM464
+                     288H48C21.49
+                     288 0
+                     309.5 0
+                     336V432C0
+                     458.5 21.49
+                     480 48
+                     480H464C490.5
+                     480 512
+                     458.5 512
+                     432V336C512
+                     309.5 490.5
+                     288 464
+                     288zM80
+                     400C62.33
+                     400 48
+                     385.7 48
+                     368C48 350.3
+                     62.33 336
+                     80 336C97.67
+                     336 112
+                     350.3 112
+                     368C112
+                     385.7 97.67
+                     400 80
+                     400z"/>
+          </svg>
+          <div>
+            <strong>Systems and Network Management:</strong> Ensured optimal performance, scalability, and security of complex systems. 
+            Consistently improved uptime by leveraging industry best practices.
+          </div>
+        </li>
+
+        <!-- Building & Managing Helpdesk Teams -->
+        <li data-aos="fade-up" data-aos-duration="600" data-aos-delay="600">
+          <svg viewBox="0 0 512 512">
+            <path d="M160 288h-16C64.47
+                     288 0 352.5
+                     0 432c0 8.844
+                     7.164 16
+                     16 16h48c8.838
+                     0 16-7.156
+                     16-16C80
+                     384.2 112.2
+                     352 152.1
+                     352h7.88C168.8
+                     352 176
+                     344.8 176
+                     336v-32C176
+                     295.2 168.8
+                     288 160
+                     288zM256
+                     0C114.7 0
+                     0 114.6
+                     0 256v48c0
+                     8.844 7.164
+                     16 16
+                     16s16-7.156
+                     16-16v-48c0
+                     -123.5 100.3
+                     -224 224-224C384.3
+                     32 480
+                     127.7 480
+                     256v48c0
+                     8.844 7.156
+                     16 16
+                     16S512
+                     312.8 512
+                     304v-48C512
+                     114.6 397.3
+                     0 256
+                     0zM368
+                     288h-16c
+                     -8.836 0
+                     -16 7.156
+                     -16 16v32c0 
+                     8.844 7.164
+                     16 16 
+                     16h8.971C399.8
+                     352 432
+                     384.2 432
+                     424C432 
+                     432.8 439.2
+                     440 448 
+                     440h48c8.836
+                     0 16-7.156
+                     16-16C512
+                     352.5 447.5
+                     288 368
+                     288z"/>
+          </svg>
+          <div>
+            <strong>Building &amp; Managing Helpdesk Teams:</strong> Built and managed helpdesk teams providing exceptional 
+            user support. Emphasized training, mentoring, and empowering team members for high satisfaction levels.
+          </div>
+        </li>
+
+        <!-- Leading MSP Infra Teams -->
+        <li data-aos="fade-up" data-aos-duration="600" data-aos-delay="700">
+          <svg viewBox="0 0 640 512">
+            <path d="M610.5 356.6l-8.2
+                     -4.7a154.6 154.6
+                     0 0 0 0
+                     -37.1l8.2
+                     -4.7a10.8
+                     10.8 0 0
+                     0 5.2
+                     -9.2 10.2
+                     10.2 0 0
+                     0-5.2
+                     -8.9l-7.6
+                     -4.4a130.7
+                     130.7 0 0 0-19.2
+                     -33.3l4.8
+                     -8.1a10.2
+                     10.2 0 0 0 0
+                     -10.3 10.7
+                     10.7 0 0 0-7.1
+                     -4.6l-9.4
+                     -1.6a153.3
+                     153.3 0 0 0-14
+                     -21.8 157.6 
+                     157.6 0 0 0-21.8
+                     -14l-1.6
+                     -9.4a10.7
+                     10.7 0 0 0-4.6
+                     -7.1 10.2
+                     10.2 0 0 0-10.3
+                     0l-8.1 4.8a130.7
+                     130.7 0 0 0-33.3
+                     -19.2l-4.4
+                     -7.6a10.2 10.2
+                     0 0 0-8.9
+                     -5.2 10.8
+                     10.8 0 0 0-9.2
+                     5.2l-4.7
+                     8.2a154.6
+                     154.6 0 0 0-37.1
+                     0l-4.7
+                     -8.2a10.8
+                     10.8 0 0 0-9.2
+                     -5.2 10.2
+                     10.2 0 0 0-8.9
+                     5.2l-4.4
+                     7.6a130.7
+                     130.7 0 0 0-33.3
+                     19.2l-8.1
+                     -4.8a10.2
+                     10.2 0 0 0-10.3
+                     0 10.7
+                     10.7 0 0 0-4.6
+                     7.1l-1.6
+                     9.4a153.3
+                     153.3 0 0 0-21.8
+                     14 157.6 
+                     157.6 0 0 0-14
+                     21.8l-9.4
+                     1.6a10.7
+                     10.7 0 0 0-7.1
+                     4.6 10.2
+                     10.2 0 0 0 0
+                     10.3l4.8
+                     8.1a130.7
+                     130.7 0 0 0-19.2
+                     33.3l-7.6
+                     4.4a10.2
+                     10.2 0 0 0-5.2
+                     8.9A10.8
+                     10.8 0 0 0 29.5
+                     356.6l8.2 4.7a154.6
+                     154.6 0 0 0 0
+                     37.1l-8.2
+                     4.7a10.8 10.8
+                     0 0 0-5.2
+                     9.2 10.2
+                     10.2 0 0 0 5.2
+                     8.9l7.6 
+                     4.4a130.7
+                     130.7 0 0 0
+                     19.2 33.3l
+                     -4.8 8.1a10.2
+                     10.2 0 0 0 0
+                     10.3 10.7
+                     10.7 0 0 0 7.1
+                     4.6l9.4
+                     1.6a153.3
+                     153.3 0 0 0
+                     14 21.8 
+                     157.6 157.6
+                     0 0 0 21.8
+                     14l1.6
+                     9.4a10.7
+                     10.7 0 0 0
+                     4.6 7.1 
+                     10.2 10.2
+                     0 0 0
+                     10.3 0l8.1
+                     -4.8a130.7
+                     130.7 0 0 0
+                     33.3-19.2
+                     l4.4 7.6a10.2
+                     10.2 0 0 0 8.9
+                     5.2 10.8 10.8
+                     0 0 0 9.2-5.2l4.7
+                     -8.2a154.6 154.6 
+                     0 0 0 37.1
+                     0l4.7
+                     8.2a10.8
+                     10.8 0 0 0
+                     9.2 5.2 
+                     10.2 10.2
+                     0 0 0 8.9
+                     -5.2l4.4
+                     -7.6a130.7
+                     130.7 0 0 0
+                     33.3-19.2
+                     l8.1 4.8a10.2
+                     10.2 0 0 0
+                     10.3 0 10.7
+                     10.7 0 0
+                     0 4.6
+                     -7.1l1.6
+                     -9.4a153.3
+                     153.3 0 0 0
+                     21.8-14 
+                     157.6 157.6
+                     0 0 0 14
+                     -21.8l9.4
+                     -1.6a10.7
+                     10.7 0 0 0
+                     7.1-4.6 10.2
+                     10.2 0 0 0
+                     0-10.3l
+                     -4.8-8.1a130.7
+                     130.7 0 0 0
+                     19.2-33.3l7.6
+                     -4.4a10.2 
+                     10.2 0 0
+                     0 5.2
+                     -8.9A10.8 
+                     10.8 0 0 
+                     0 610.5 
+                     356.6zM448
+                     384a64 64
+                     0 1 1 64
+                     -64A64.07
+                     64.07 0 0
+                     1 448
+                     384z"/>
+          </svg>
+          <div>
+            <strong>Leading MSP Infra Teams:</strong> Drove operational excellence and service delivery for clients as part 
+            of Managed Services. Ensured SLAs were met and leveraged proactive management.
+          </div>
+        </li>
+      </ul>
+    </section>
+
+    <!-- Inspiration & Vision -->
+    <section id="inspiration" data-aos="fade-up" data-aos-duration="700">
+      <div class="section-heading">
+        <svg class="nav-icon" viewBox="0 0 352 512">
+          <path d="M96 48c0-8.84
+                   7.16-16 16-16H240c8.8 
+                   0 16 7.16 16 16V66.88C308.1
+                   85.75 352 142 352 208c0
+                   60.4-37.7 111.3-90.7 
+                   130.1 2.2 5.8 3.7 
+                   12.2 4.2 19.1l.3 
+                   5.6c.5 10.1 9.3
+                   18.2 19.4 18.2H296
+                   c13.3 0 24 10.7 24 
+                   24c0 13.3-10.7 24
+                   -24 24H56c-13.25 0
+                   -24-10.7-24-24c
+                   0-13.3 10.75-24 
+                   24-24h14.8c10.1 
+                   0 18.9-8.1 
+                   19.4-18.2l.3-5.6c
+                   .4-7 1.9-13.3 
+                   4.2-19.1C41.7 
+                   319.3 4 268.4 
+                   4 208C4 142 47 
+                   85.75 96 66.88V48z"/>
+        </svg>
+        <h2>Inspiration &amp; Vision</h2>
+      </div>
+      <p>
+        My inspiration stems from bridging human potential with cutting-edge technology. I envision a landscape 
+        where IT is not merely a supporting function but a transformative force that drives creativity, 
+        empowers people, and unlocks sustainable growth for businesses worldwide.
+      </p>
+    </section>
+
+    <!-- Tech Manifesto (Implementation #8) -->
+    <section id="manifesto" class="manifesto-section" data-aos="fade-up" data-aos-duration="700">
+      <h3>My Tech Philosophy (Manifesto)</h3>
+<br>
+      <ul>
+        <li><strong>Security is Everyone’s Job:</strong> From developers to end-users, a culture of vigilance ensures robust protection.</li>
+        <li><strong>Design for the Future:</strong> Always architect solutions with scalability and flexibility in mind.</li>
+        <li><strong>Embrace AI as an Enabler:</strong> AI should augment human creativity, not replace it.</li>
+        <li><strong>People Over Processes:</strong> Technology serves people, so keep the user experience at the heart of every decision.</li>
+        <li><strong>Never Stop Learning:</strong> The tech landscape evolves daily - continuous growth is non-negotiable.</li>
+      </ul>
+    </section>
+
+    <!-- Core Competencies -->
+    <section id="competencies" data-aos="fade-up" data-aos-duration="700">
+      <div class="section-heading">
+        <svg viewBox="0 0 640 512">
+          <path d="M256 128H384C419.3 
+                   128 448 99.35 448 
+                   64C448 28.65 419.3 
+                   0 384 0H256C220.7 
+                   0 192 28.65 
+                   192 64C192 
+                   99.35 220.7 
+                   128 256 
+                   128zM160 
+                   64C160 
+                   28.65 131.3 
+                   0 96 
+                   0H64C28.65 
+                   0 0 28.65 
+                   0 64C0 99.35 
+                   28.65 128 
+                   64 128H96C131.3 
+                   128 160 
+                   99.35 160 
+                   64zM576 
+                   0H544C508.7 
+                   0 480 28.65 
+                   480 64C480 
+                   99.35 508.7 
+                   128 544 
+                   128H576C611.3 
+                   128 640 
+                   99.35 640 
+                   64C640 
+                   28.65 611.3 
+                   0 576 
+                   0zM256 
+                   384H384C419.3 
+                   384 448 
+                   355.3 448 
+                   320C448 
+                   284.7 419.3
+                   256 384 
+                   256H256C220.7 
+                   256 192 
+                   284.7 192 
+                   320C192 
+                   355.3 220.7 
+                   384 256 
+                   384zM160 
+                   320C160 
+                   284.7 131.3 
+                   256 96 
+                   256H64C28.65 
+                   256 0 
+                   284.7 0 
+                   320C0 
+                   355.3 28.65 
+                   384 64 
+                   384H96C131.3 
+                   384 160 
+                   355.3 160 
+                   320zM576 
+                   256H544C508.7 
+                   256 480 
+                   284.7 480 
+                   320C480 
+                   355.3 508.7 
+                   384 544 
+                   384H576C611.3 
+                   384 640 
+                   355.3 640 
+                   320C640 
+                   284.7 611.3 
+                   256 576 
+                   256z"/>
+        </svg>
+        <h2>Core Competencies</h2>
+      </div>
+
+      <div class="competencies-grid">
+        <!-- 1. Cloud Architecture -->
+        <div class="competency-card" data-aos="fade-up" data-aos-duration="500">
+          <div class="icon-wrapper">
+            <svg viewBox="0 0 640 512">
+              <path d="M537.6 226.6C537.4
+                       225.1 537.2
+                       223.7 537 
+                       222.2C528.3
+                       156.4 476
+                       104.1 410.2
+                       95.4 406.1
+                       42.3 358.7
+                       0 304 0
+                       251.5 0
+                       207.2 37.7
+                       198.6 87.1c
+                       -48.5 4.9
+                       -90.3 36.3
+                       -108.3 80.6
+                       C37.5 172.4 
+                       0 213.3
+                       0 262.4 
+                       0 320.5
+                       47.5 368
+                       105.6 368H488
+                       c52.9 0
+                       96-43.1
+                       96-96C584
+                       270.8 565.8
+                       245.6 537.6
+                       226.6z"/>
+            </svg>
+          </div>
+          <h3>Cloud Architecture</h3>
+          <p>Designing scalable, secure cloud solutions that enhance business operations and minimize costs.</p>
+
+          <!-- Animated Skill Meter -->
+          <div class="skill-meter-container">
+            <div class="skill-meter-label">Expertise Level</div>
+            <div class="skill-meter">
+              <div class="skill-meter-fill" style="width: 0%;" data-fill="90%"></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 2. Cybersecurity Strategy -->
+        <div class="competency-card" data-aos="fade-up" data-aos-duration="500" data-aos-delay="100">
+          <div class="icon-wrapper">
+            <svg viewBox="0 0 512 512">
+              <path d="M466.5 83.7 
+                       275.1 3.7c
+                       -8.4-3.3
+                       -17.9-3.3
+                       -26.3 0l
+                       -191.4 80c
+                       -11.6 4.9
+                       -19.2 16.1
+                       -19.2 28.5 
+                       0 247.9
+                       167.5 380.4
+                       221.7 414.3
+                       9.8 6.6
+                       22.7 6.6
+                       32.4 0
+                       54.2-33.9
+                       221.7-166.4
+                       221.7-414.3
+                       0-12.4
+                       -7.6-23.6
+                       -19.2-28.5z"/>
+            </svg>
+          </div>
+          <h3>Cybersecurity Strategy</h3>
+          <p>Implementing proactive measures to secure data, ensure compliance, and protect organizations from cyber threats.</p>
+
+          <!-- Animated Skill Meter -->
+          <div class="skill-meter-container">
+            <div class="skill-meter-label">Expertise Level</div>
+            <div class="skill-meter">
+              <div class="skill-meter-fill" style="width: 0%;" data-fill="85%"></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 3. AI Integration -->
+        <div class="competency-card" data-aos="fade-up" data-aos-duration="500" data-aos-delay="200">
+          <div class="icon-wrapper">
+            <svg viewBox="0 0 640 512">
+              <path d="M32 64C32 
+                       28.65 60.65
+                       0 96 0H544C579.3
+                       0 608 28.65
+                       608 64V384C608
+                       419.3 579.3
+                       448 544
+                       448H96C60.65
+                       448 32
+                       419.3 32
+                       384V64zM208 
+                       208C234.5
+                       208 256
+                       186.5 256
+                       160C256
+                       133.5 234.5
+                       112 208
+                       112C181.5
+                       112 160
+                       133.5 160
+                       160C160
+                       186.5 181.5
+                       208 208
+                       208zM432 
+                       112C405.5
+                       112 384
+                       133.5 384
+                       160C384
+                       186.5 405.5
+                       208 432
+                       208C458.5
+                       208 480
+                       186.5 480
+                       160C480
+                       133.5 458.5
+                       112 432
+                       112zM288
+                       352V320H352V352C352
+                       369.7 337.7
+                       384 320
+                       384C302.3
+                       384 288
+                       369.7 288
+                       352zM576
+                       464C593.7
+                       464 608
+                       478.3 608
+                       496C608
+                       504.8 600.8
+                       512 592
+                       512H48c
+                       -8 0
+                       -16-7.16
+                       -16-16C32
+                       478.3 46.33
+                       464 64
+                       464H576z"/>
+          </div>
+          <h3>AI Integration</h3>
+          <p>Leveraging artificial intelligence to drive business transformation, streamline operations, and enhance decision-making.</p>
+
+          <!-- Animated Skill Meter -->
+          <div class="skill-meter-container">
+            <div class="skill-meter-label">Expertise Level</div>
+            <div class="skill-meter">
+              <div class="skill-meter-fill" style="width: 0%;" data-fill="80%"></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 4. IT Strategy & Planning -->
+        <div class="competency-card" data-aos="fade-up" data-aos-duration="500" data-aos-delay="300">
+          <div class="icon-wrapper">
+            <svg viewBox="0 0 384 512">
+              <path d="M336 64H272c
+                       0-35.35-28.65
+                       -64-64-64S144
+                       28.65 144
+                       64H80C35.82
+                       64 0 99.82
+                       0 144v320c0
+                       44.18 35.82
+                       80 80
+                       80H304c44.18
+                       0 80-35.82
+                       80-80V144C384
+                       99.82 348.2
+                       64 304
+                       64zM192
+                       32c17.64
+                       0 32 14.36
+                       32 32H160C160
+                       46.36 174.4
+                       32 192
+                       32zM128
+                       376C128
+                       362.8 138.8
+                       352 152
+                       352H232C245.3
+                       352 256
+                       362.8 256
+                       376C256
+                       389.3 245.3
+                       400 232
+                       400H152C138.8
+                       400 128
+                       389.3 128
+                       376zM256
+                       280c0
+                       13.25-10.75
+                       24-24
+                       24H152C138.8
+                       304 128
+                       293.3 128
+                       280C128
+                       266.8 138.8
+                       256 152
+                       256h80C245.3
+                       256 256
+                       266.8 256
+                       280zM128
+                       184C128
+                       170.8 138.8
+                       160 152
+                       160H232C245.3
+                       160 256
+                       170.8 256
+                       184C256
+                       197.3 245.3
+                       208 232
+                       208H152C138.8
+                       208 128
+                       197.3 128
+                       184z"/>
+          </div>
+          <h3>IT Strategy &amp; Planning</h3>
+          <p>Aligning IT initiatives with business goals to drive growth, efficiency, and innovation.</p>
+
+          <!-- Animated Skill Meter -->
+          <div class="skill-meter-container">
+            <div class="skill-meter-label">Expertise Level</div>
+            <div class="skill-meter">
+              <div class="skill-meter-fill" style="width: 0%;" data-fill="90%"></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 5. Team Leadership -->
+        <div class="competency-card" data-aos="fade-up" data-aos-duration="500" data-aos-delay="400">
+          <div class="icon-wrapper">
+            <svg viewBox="0 0 640 512">
+              <path d="M96 224c0
+                       35.3-28.7
+                       64-64 
+                       64S-32 259.3
+                       -32 224 96
+                       288 96
+                       224zM144
+                       216c-13.3
+                       0-24
+                       10.7-24
+                       24v80h288v
+                       -64c0-44.2
+                       35.8-80
+                       80-80c12.6
+                       0 24.5
+                       3.1 34.9
+                       8.6C505.9
+                       101.8 453.7
+                       48 384
+                       48c-8.8
+                       0-16
+                       7.2-16
+                       16v48H272V64c
+                       0-17.7
+                       -14.3-32
+                       -32-32c
+                       -70.7 0
+                       -121.9 53.8
+                       -128.9 120.6
+                       C103.5
+                       152.9 112
+                       160 112
+                       168v48h32V216
+                       c0-13.3
+                       -10.7-24
+                       -24-24zM608
+                       224c0
+                       35.3-28.7
+                       64-64
+                       64s-64
+                       -28.7
+                       -64-64
+                       28.7-64
+                       64-64
+                       64 28.7
+                       64
+                       64zM560
+                       240h-32v80H256v56.7
+                       c8.7 5
+                       16.6 11.3
+                       23.6 19H560
+                       c44.2 0
+                       80-35.8
+                       80-80v
+                       -48C640
+                       250.7 602.4
+                       240 560
+                       240z"/>
+          </div>
+          <h3>Team Leadership</h3>
+          <p>Building high-performing teams that thrive on collaboration, creativity, and a shared purpose.</p>
+
+          <!-- Animated Skill Meter -->
+          <div class="skill-meter-container">
+            <div class="skill-meter-label">Expertise Level</div>
+            <div class="skill-meter">
+              <div class="skill-meter-fill" style="width: 0%;" data-fill="95%"></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 6. Data Management -->
+        <div class="competency-card" data-aos="fade-up" data-aos-duration="500" data-aos-delay="500">
+          <div class="icon-wrapper">
+            <svg viewBox="0 0 384 512">
+              <path d="M0 80C0 
+                       35.82 86 
+                       0 192 
+                       0s192 35.82 
+                       192 80v64c0
+                       44.18-86
+                       80-192
+                       80S0
+                       188.18 0
+                       144V80zM192
+                       192c106
+                       0 192
+                       -35.82 192
+                       -80v96c0
+                       44.18-86
+                       80-192
+                       80S0
+                       252.18 0
+                       208V112C0
+                       156.2 86
+                       192 192
+                       192zM0
+                       304c0
+                       44.18 86
+                       80 192
+                       80s192
+                       -35.82 192
+                       -80v-64c0
+                       -44.18-86
+                       -80-192
+                       -80S0
+                       195.8 0
+                       240V304zm192 
+                       80c-106 
+                       0-192 
+                       -35.82-192 
+                       -80v96c0 
+                       44.18 86 
+                       80 192 
+                       80s192 
+                       -35.82 192 
+                       -80v-96c0 
+                       44.2-86 
+                       80-192 
+                       80z"/>
+          </div>
+          <h3>Data Management</h3>
+          <p>Ensuring data integrity, optimizing storage solutions, and leveraging data analytics for deeper insights.</p>
+
+          <!-- Animated Skill Meter -->
+          <div class="skill-meter-container">
+            <div class="skill-meter-label">Expertise Level</div>
+            <div class="skill-meter">
+              <div class="skill-meter-fill" style="width: 0%;" data-fill="85%"></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 7. Digital Transformation -->
+        <div class="competency-card" data-aos="fade-up" data-aos-duration="500" data-aos-delay="600">
+          <div class="icon-wrapper">
+            <svg viewBox="0 0 640 512">
+              <path d="M64
+                       96C64
+                       60.65 92.65
+                       32 128
+                       32H512c
+                       35.35 0
+                       64 28.65
+                       64 64V320c
+                       35.3 0
+                       64 28.7
+                       64 64c0
+                       17.7-14.3
+                       32-32
+                       32H32C14.33
+                       416 0
+                       401.7 0
+                       384c0
+                       -35.3 28.65
+                       -64 64
+                       -64V96zM96
+                       320H544V96c0
+                       -17.67-14.3
+                       -32-32
+                       -32H128c
+                       -17.67 0
+                       -32 14.33
+                       -32 32V320z"/>
+          </div>
+          <h3>Digital Transformation</h3>
+          <p>Leading initiatives to modernize IT infrastructure, enhance user experience, and streamline business processes.</p>
+
+          <!-- Animated Skill Meter -->
+          <div class="skill-meter-container">
+            <div class="skill-meter-label">Expertise Level</div>
+            <div class="skill-meter">
+              <div class="skill-meter-fill" style="width: 0%;" data-fill="88%"></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 8. Strategic IT Alignment -->
+        <div class="competency-card" data-aos="fade-up" data-aos-duration="500" data-aos-delay="700">
+          <div class="icon-wrapper">
+            <svg viewBox="0 0 576 512">
+              <path d="M384 
+                       128c0 
+                       17.7-14.3 
+                       32-32
+                       32H288v64h64c
+                       17.7 0
+                       32 14.3
+                       32 32s
+                       -14.3 32
+                       -32 32H256c
+                       -17.7 0
+                       -32-14.3
+                       -32-32V96c0
+                       -17.7 14.3
+                       -32 32
+                       -32h96c17.7
+                       0 32 14.3
+                       32 32v32zm166.6
+                       19.3l-160
+                       160c-12.5
+                       12.5-32.8
+                       12.5-45.3
+                       0l-73.4
+                       -73.4-150.6
+                       150.6c-12.5
+                       12.5-32.8
+                       12.5-45.3
+                       0l-56-56c
+                       -12.5-12.5
+                       -12.5-32.8
+                       0-45.3l
+                       160-160c
+                       12.5-12.5
+                       32.8-12.5
+                       45.3 0l
+                       73.4 73.4
+                       150.6-150.6c
+                       12.5-12.5
+                       32.8-12.5
+                       45.3 0l
+                       56 56c
+                       12.5 12.5
+                       12.5 32.8
+                       0 45.3z"/>
+          </div>
+          <h3>Strategic IT Alignment</h3>
+          <p>Aligning IT services and capabilities with broader organizational goals to drive performance and success.</p>
+
+          <!-- Animated Skill Meter -->
+          <div class="skill-meter-container">
+            <div class="skill-meter-label">Expertise Level</div>
+            <div class="skill-meter">
+              <div class="skill-meter-fill" style="width: 0%;" data-fill="90%"></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 9. Systems & Network Management -->
+        <div class="competency-card" data-aos="fade-up" data-aos-duration="500" data-aos-delay="800">
+          <div class="icon-wrapper">
+            <svg viewBox="0 0 512 512">
+              <path d="M464 
+                       32H48C21.49
+                       32 0 
+                       53.49 0
+                       80V176C0
+                       202.5 21.49
+                       224 48
+                       224H464C490.5
+                       224 512
+                       202.5 512
+                       176V80C512
+                       53.49 490.5
+                       32 464
+                       32zM80
+                       144C62.33
+                       144 48
+                       129.7 48
+                       112C48 
+                       94.33 62.33
+                       80 80
+                       80C97.67
+                       80 112
+                       94.33 112
+                       112C112
+                       129.7 97.67
+                       144 80
+                       144zM464
+                       288H48C21.49
+                       288 0
+                       309.5 0
+                       336V432C0
+                       458.5 21.49
+                       480 48
+                       480H464C490.5
+                       480 512
+                       458.5 512
+                       432V336C512
+                       309.5 490.5
+                       288 464
+                       288zM80
+                       400C62.33
+                       400 48
+                       385.7 48
+                       368C48
+                       350.3 62.33
+                       336 80
+                       336C97.67
+                       336 112
+                       350.3 112
+                       368C112
+                       385.7 97.67
+                       400 80
+                       400z"/>
+            </svg>
+          </div>
+          <h3>Systems &amp; Network Management</h3>
+          <p>Managing complex systems and networks to ensure optimal performance, scalability, and security for various organizations.</p>
+
+          <!-- Animated Skill Meter -->
+          <div class="skill-meter-container">
+            <div class="skill-meter-label">Expertise Level</div>
+            <div class="skill-meter">
+              <div class="skill-meter-fill" style="width: 0%;" data-fill="90%"></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 10. Helpdesk Team Management -->
+        <div class="competency-card" data-aos="fade-up" data-aos-duration="500" data-aos-delay="900">
+          <div class="icon-wrapper">
+            <svg viewBox="0 0 512 512">
+              <path d="M160
+                       288h-16C64.47
+                       288 0
+                       352.5 0
+                       432c0 8.844
+                       7.164 16
+                       16 16h48c8.838
+                       0 16-7.156
+                       16-16C80
+                       384.2 112.2
+                       352 152.1
+                       352h7.88C168.8
+                       352 176
+                       344.8 176
+                       336v-32C176
+                       295.2 168.8
+                       288 160
+                       288zM256
+                       0C114.7 0
+                       0 114.6
+                       0 256v48c0
+                       8.844 7.164
+                       16 16
+                       16s16-7.156
+                       16-16v-48c0
+                       -123.5 100.3
+                       -224 224-224C384.3
+                       32 480
+                       127.7 480
+                       256v48c0
+                       8.844 7.156
+                       16 16
+                       16S512
+                       312.8 512
+                       304v-48C512
+                       114.6 397.3
+                       0 256
+                       0zM368
+                       288h-16c
+                       -8.836 0
+                       -16 7.156
+                       -16 16v32c0
+                       8.844 7.164
+                       16 16
+                       16h8.971C399.8
+                       352 432
+                       384.2 432
+                       424C432
+                       432.8 439.2
+                       440 448
+                       440h48c8.836
+                       0 16-7.156
+                       16-16C512
+                       352.5 447.5
+                       288 368
+                       288z"/>
+          </div>
+          <h3>Helpdesk Team Management</h3>
+          <p>Building and managing helpdesk teams to provide exceptional support and ensure high levels of service quality.</p>
+
+          <!-- Animated Skill Meter -->
+          <div class="skill-meter-container">
+            <div class="skill-meter-label">Expertise Level</div>
+            <div class="skill-meter">
+              <div class="skill-meter-fill" style="width: 0%;" data-fill="92%"></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 11. Leading MSP Infra Teams -->
+        <div class="competency-card" data-aos="fade-up" data-aos-duration="500" data-aos-delay="1000">
+          <div class="icon-wrapper">
+            <svg viewBox="0 0 640 512">
+              <path d="M610.5 356.6l-8.2-4.7
+                       a154.6 154.6 0 0 0 
+                       0-37.1l8.2-4.7a10.8 
+                       10.8 0 0 0 5.2-9.2 10.2
+                       10.2 0 0 0-5.2-8.9l
+                       -7.6-4.4a130.7 130.7 
+                       0 0 0-19.2-33.3l4.8
+                       -8.1a10.2 10.2 0 0 0 
+                       0-10.3 10.7 10.7 
+                       0 0 0-7.1-4.6l
+                       -9.4-1.6a153.3 153.3 
+                       0 0 0-14-21.8 157.6 
+                       157.6 0 0 0-21.8-14l
+                       -1.6-9.4a10.7 
+                       10.7 0 0 0-4.6-7.1 
+                       10.2 10.2 0 0 0-10.3 0l
+                       -8.1 4.8a130.7 130.7 0 0 0
+                       -33.3-19.2l-4.4-7.6a10.2 
+                       10.2 0 0 0-8.9-5.2 
+                       10.8 10.8 0 0 0-9.2 5.2l
+                       -4.7 8.2a154.6 154.6 0 0 0
+                       -37.1 0l-4.7-8.2a10.8 
+                       10.8 0 0 0-9.2-5.2 10.2 
+                       10.2 0 0 0-8.9 5.2l
+                       -4.4 7.6a130.7 130.7 0 0 0
+                       -33.3 19.2l-8.1-4.8a10.2 
+                       10.2 0 0 0-10.3 0 10.7 
+                       10.7 0 0 0-4.6 7.1l
+                       -1.6 9.4a153.3 153.3 0 0 0
+                       -21.8 14 157.6 157.6 0 0 0
+                       -14 21.8l-9.4 1.6a10.7
+                       10.7 0 0 0-7.1 4.6 10.2
+                       10.2 0 0 0 0 10.3l4.8
+                       8.1a130.7 130.7 0 0 0
+                       -19.2 33.3l-7.6 4.4a10.2 
+                       10.2 0 0 0-5.2 8.9A10.8 
+                       10.8 0 0 0 29.5 356.6l
+                       8.2 4.7a154.6 154.6 0 0 0
+                       0 37.1l-8.2 4.7a10.8 
+                       10.8 0 0 0-5.2 9.2 10.2 
+                       10.2 0 0 0 5.2 8.9l7.6 
+                       4.4a130.7 130.7 0 0 0 
+                       19.2 33.3l-4.8 8.1a10.2 10.2 
+                       0 0 0 0 10.3 10.7 10.7 
+                       0 0 0 7.1 4.6l9.4 1.6a153.3 
+                       153.3 0 0 0 14 21.8 157.6 
+                       157.6 0 0 0 21.8 14l1.6 
+                       9.4a10.7 10.7 0 0 0 4.6 7.1 
+                       10.2 10.2 0 0 0 10.3 0l8.1
+                       -4.8a130.7 130.7 0 0 0 33.3
+                       19.2l4.4 7.6a10.2 10.2 0 0 0
+                       8.9 5.2 10.8 10.8 0 0 0 
+                       9.2-5.2l4.7-8.2a154.6 154.6 0 
+                       0 0 37.1 0l4.7 8.2a10.8 10.8
+                       0 0 0 9.2 5.2 10.2 10.2 0 0 0 
+                       8.9-5.2l4.4-7.6a130.7 130.7 0 0 
+                       0 33.3-19.2l8.1 4.8a10.2 10.2 0 0
+                       0 10.3 0 10.7 10.7 0 0 0 4.6
+                       -7.1l1.6-9.4a153.3 153.3 0 0 0 
+                       21.8-14 157.6 157.6 0 0 0 14
+                       -21.8l9.4-1.6a10.7 10.7 0 0 0 
+                       7.1-4.6 10.2 10.2 0 0 0 0
+                       -10.3l-4.8-8.1a130.7 130.7 0 0 0 
+                       19.2-33.3l7.6-4.4a10.2 10.2 0 0 0 
+                       5.2-8.9A10.8 10.8 0 0 0 610.5 
+                       356.6zM448 384a64 64 0 
+                       1 1 64-64A64.07 64.07 0 0 1 
+                       448 384z"/>
+          </svg>
+          <h3>Leading MSP Infra Teams</h3>
+          <p>Driving operational excellence and overseeing the management of IT infrastructures for clients as part of MSP services.</p>
+
+          <!-- Animated Skill Meter -->
+          <div class="skill-meter-container">
+            <div class="skill-meter-label">Expertise Level</div>
+            <div class="skill-meter">
+              <div class="skill-meter-fill" style="width: 0%;" data-fill="88%"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+<!-- 12. Project Management -->
+<div class="competency-card" data-aos="fade-up" data-aos-duration="500" data-aos-delay="1100">
+  <div class="icon-wrapper">
+    <!-- Sample icon (clipboard-check). Feel free to replace with any relevant path. -->
+    <svg viewBox="0 0 512 512">
+      <path d="M336 64H176c-26.5 0-48 
+               21.5-48 48v16H80c-26.5 0-48 
+               21.5-48 48v288c0 26.5 21.5 
+               48 48 48H432c26.5 0 48-21.5 
+               48-48V176c0-26.5-21.5-48
+               -48-48H368V112c0-26.5-21.5
+               -48-48-48zM256 96c17.6 0 
+               32 14.4 32 32s-14.4 32
+               -32 32s-32-14.4-32-32
+               14.4-32 32-32zM375 
+               281l-111 111c-4.7 4.7
+               -12.3 4.7-17 0l-55-55c
+               -4.7-4.7-4.7-12.3 
+               0-17l17-17c4.7-4.7 
+               12.3-4.7 17 0l38 
+               38 94-94c4.7-4.7 
+               12.3-4.7 17 0l17 
+               17c4.7 4.7 4.7 
+               12.3 0 17z"/>
+    </svg>
+  </div>
+  <h3>Project Management</h3>
+  <p>
+    Skilled at orchestrating and delivering IT initiatives, ensuring scope, timeline, 
+    and budget objectives are met, while maintaining clear communication with stakeholders.
+  </p>
+
+  <!-- Expertise Level Meter -->
+  <div class="skill-meter-container">
+    <div class="skill-meter-label">Expertise Level</div>
+    <div class="skill-meter">
+      <!-- Adjust data-fill to whichever level you prefer (e.g., "90%") -->
+      <div class="skill-meter-fill" style="width: 0%;" data-fill="90%"></div>
+    </div>
+  </div>
+</div>
+
+
+
+    </section>
+
+    <!-- Tech Trivia Quiz (Implementation #3) -->
+    <section class="quiz-section" id="quiz" data-aos="fade-up" data-aos-duration="700" style="margin-top: 3rem; padding: 1rem; background-color: #f9f9f9; border-radius: 6px; border: 1px solid #eee;">
+      <h3>Quick Cloud &amp; Cybersecurity Trivia</h3>
+
+      <div class="quiz-question" style="margin-bottom: 1.5rem;">
+        <p style="margin-bottom: 0.5rem; font-weight: 600;">1. Which of the following is <strong>not</strong> a cloud service model?</p>
+        <div>
+          <label style="display: block; margin-bottom: 0.25rem; cursor: pointer;"><input type="radio" name="q1" value="IaaS" /> IaaS (Infrastructure as a Service)</label>
+          <label style="display: block; margin-bottom: 0.25rem; cursor: pointer;"><input type="radio" name="q1" value="PaaS" /> PaaS (Platform as a Service)</label>
+          <label style="display: block; margin-bottom: 0.25rem; cursor: pointer;"><input type="radio" name="q1" value="SaaS" /> SaaS (Software as a Service)</label>
+          <label style="display: block; margin-bottom: 0.25rem; cursor: pointer;"><input type="radio" name="q1" value="FaaS" /> FaaS (Food as a Service)</label>
+        </div>
+      </div>
+
+      <div class="quiz-question" style="margin-bottom: 1.5rem;">
+        <p style="margin-bottom: 0.5rem; font-weight: 600;">2. A <em>phishing</em> attack typically involves:</p>
+        <div>
+          <label style="display: block; margin-bottom: 0.25rem; cursor: pointer;"><input type="radio" name="q2" value="Fake login pages" /> Luring users to enter data on a fake login page</label>
+          <label style="display: block; margin-bottom: 0.25rem; cursor: pointer;"><input type="radio" name="q2" value="Physical intrusion" /> Physical break-in to a server room</label>
+          <label style="display: block; margin-bottom: 0.25rem; cursor: pointer;"><input type="radio" name="q2" value="Brute force" /> Brute forcing all network ports</label>
+          <label style="display: block; margin-bottom: 0.25rem; cursor: pointer;"><input type="radio" name="q2" value="Electric" /> Hacking with an electrical surge</label>
+        </div>
+      </div>
+
+      <div class="quiz-question" style="margin-bottom: 1.5rem;">
+        <p style="margin-bottom: 0.5rem; font-weight: 600;">3. Which of these is a best practice in cloud cost optimization?</p>
+        <div>
+          <label style="display: block; margin-bottom: 0.25rem; cursor: pointer;"><input type="radio" name="q3" value="Never scale down" /> Never scale down resources once deployed</label>
+          <label style="display: block; margin-bottom: 0.25rem; cursor: pointer;"><input type="radio" name="q3" value="Overprovision" /> Always overprovision to avoid usage spikes</label>
+          <label style="display: block; margin-bottom: 0.25rem; cursor: pointer;"><input type="radio" name="q3" value="Reserved Instances" /> Use reserved or spot instances when possible</label>
+          <label style="display: block; margin-bottom: 0.25rem; cursor: pointer;"><input type="radio" name="q3" value="Ignore usage" /> Ignore usage metrics and hope for the best</label>
+        </div>
+      </div>
+
+      <button style="padding: 0.5rem 1rem; font-size: 0.9rem; color: #fff; background-color: #4caf7f; border: none; border-radius: 4px; cursor: pointer;" onclick="checkQuizAnswers()">Check Answers</button>
+    </section>
+
+    <!-- Certifications (AWS & Microsoft) -->
+    <section id="certifications" class="certifications-section" data-aos="fade-up" data-aos-duration="700">
+      <div class="section-heading">
+        <svg viewBox="0 0 512 512">
+          <path d="M272
+                   176c0
+                   17.6-14.4
+                   32-32
+                   32s-32
+                   -14.4-32
+                   -32 14.4
+                   -32 32
+                   -32s32
+                   14.4 32
+                   32zM256
+                   0C394.9
+                   0 512
+                   113.1 512
+                   256C512
+                   394.9 398.9
+                   512 256
+                   512C117.1
+                   512 0
+                   398.9 0
+                   256C0
+                   113.1 113.1
+                   0 256
+                   0zM256
+                   32C128.9
+                   32 32
+                   128.9 32
+                   256C32
+                   383.1 128.9
+                   480 256
+                   480C383.1
+                   480 480
+                   383.1 480
+                   256C480
+                   128.9 383.1
+                   32 256
+                   32z"/>
+        </svg>
+        <h2>Certifications</h2>
+      </div>
+      <div class="certifications-list">
+        <div class="cert-item" data-aos="fade-up" data-aos-duration="600">
+          <img 
+            src="https://upload.wikimedia.org/wikipedia/commons/9/93/Amazon_Web_Services_Logo.svg" 
+            alt="AWS Logo"
+          />
+          <span>AWS Certified</span>
+        </div>
+        <div class="cert-item" data-aos="fade-up" data-aos-duration="600" data-aos-delay="100">
+          <img 
+            src="https://upload.wikimedia.org/wikipedia/commons/4/44/Microsoft_logo.svg" 
+            alt="Microsoft Logo"
+          />
+          <span>Microsoft Certified</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- Personality & Soft Skills -->
+    <section id="personality" class="personality-section" data-aos="fade-up" data-aos-duration="700">
+      <div class="section-heading">
+        <svg viewBox="0 0 640 512">
+          <path d="M96 128a96 
+                   96 0 1 1
+                   192 0a96
+                   96 0 1 
+                   1-192
+                   0zM48
+                   272H240c8.8
+                   0 16
+                   7.2 16
+                   16c0
+                   79.5-64.5
+                   144-144
+                   144c-39.1
+                   0-74.7
+                   -15.3
+                   -100.4
+                   -40c-6.2
+                   -6.2-7.3
+                   -15.7
+                   -2.6
+                   -23.1S21.9
+                   360 32
+                   360h16c35.3
+                   0 64
+                   -28.7 64
+                   -64c0
+                   -8.8 7.2
+                   -16
+                   16-16zm304
+                   16c0-88.4
+                   71.6-160
+                   160-160s
+                   160 71.6
+                   160 160c
+                   0 56.4
+                   -29.5 105.9
+                   -74 134.1
+                   c-5 3.1
+                   -8 8.6
+                   -8 14.5V456c
+                   0 13.3
+                   -10.7 24
+                   -24 24H400c
+                   -13.3 0
+                   -24-10.7
+                   -24-24V416c
+                   0-5.9
+                   -3.1-11.4
+                   -8-14.5c
+                   -44.5-28.2
+                   -74-77.7
+                   -74-134.1z"/>
+        </svg>
+        <h2>Personality &amp; Soft Skills</h2>
+      </div>
+      <div class="personality-grid">
+        <div class="personality-card" data-aos="fade-up" data-aos-duration="600">
+          <svg viewBox="0 0 512 512">
+            <path d="M159.7 
+                     175.5C162.9 
+                     156.8 179.7
+                     144 198.4
+                     144H313.6c
+                     18.7 0
+                     35.5 12.8
+                     38.7 31.5l
+                     22.6 128c
+                     3.8 21.4
+                     -13 40.5
+                     -34.7
+                     40.5H171.4c
+                     -21.7 0
+                     -38.5-19.1
+                     -34.7-40.5l
+                     22.6-128zM204.9 
+                     181c-4 
+                     0-7.5 2.9
+                     -8.2 6.9l
+                     -11.9 67.6c
+                     -.9 5.1
+                     3.1 9.5 
+                     8.2 9.5h127.8c
+                     5.1 0 
+                     9.1-4.4
+                     8.2-9.5l
+                     -11.9
+                     -67.6c
+                     -.7-4
+                     -4.2-6.9
+                     -8.2-6.9H204.9zM400
+                     352c17.7 
+                     0 32 
+                     14.3 32 
+                     32c0 14.8
+                     -10.1 27.2
+                     -23.7 
+                     30.6c10.7 
+                     14.8 
+                     16.9 32.8 
+                     16.9 52.5c0
+                     49.6-40.2
+                     89.9-89.8
+                     89.9H176.6
+                     c-49.6 0
+                     -89.8-40.3
+                     -89.8-89.9c
+                     0-19.7 
+                     6.2-37.7
+                     16.9-52.5
+                     C90.1 411.2
+                     80 398.8
+                     80 384c0
+                     -17.7 
+                     14.3-32 
+                     32-32H400z"/>
+          </svg>
+          <h3>Adaptability</h3>
+          <p>I thrive in dynamic environments, embracing change and quickly learning new technologies.</p>
+        </div>
+        <div class="personality-card" data-aos="fade-up" data-aos-duration="600" data-aos-delay="100">
+          <svg viewBox="0 0 512 512">
+            <path d="M256 8C119 8 8 119 
+                     8 256c0 110.1 69.3 203.8 
+                     166 238.2c12.1 2.2 16.5
+                     -5.2 16.5-11.6c0-5.7
+                     -.2-24.5-.3-44.5c
+                     -67.3 14.7-81.5
+                     -31.6-81.5-31.6c
+                     -11-28.3-26.9-35.8
+                     -26.9-35.8c-22.1
+                     -15.1 .2-14.8 1.6
+                     -14.8c24.5 1.7 37.4 
+                     25.6 37.4 25.6c21.7 
+                     37.2 57.1 26.4 71.1 
+                     20.2c2.2-15.7 8.5
+                     -26.4 15.5-32.5c
+                     -53.7-6.1-110.1
+                     -26.9-110.1-119.6
+                     c0-26.4 9.4-48
+                     24.8-64.9c-2.5
+                     -6.1-10.7-30.6
+                     2.3-63.9c0 0 
+                     20.2-6.5 66.2 
+                     24.8c19.1-5.3 
+                     39.6-7.9 60-8
+                     c20.4 .1 40.9 2.7
+                     60 8c46-31.3 
+                     66.2-24.8 66.2
+                     -24.8c13 33.3 
+                     4.8 57.8 2.3
+                     63.9c15.4 16.9
+                     24.8 38.5 24.8
+                     64.9c0 92.9-56.5
+                     113.4-110.3 119.3
+                     c8.7 7.7 16.6 23 
+                     16.6 46.3c0 33.5
+                     -.3 60.4-.3 68.6
+                     c0 6.4 4.3 13.9 
+                     16.6 11.6C434.7 
+                     459.7 504 366 
+                     504 256C504 119 
+                     393 8 256 8z"/>
+          </svg>
+          <h3>Creative Problem-Solving</h3>
+          <p>Approach challenges with a blend of logic and outside-the-box thinking to find the best solutions.</p>
+        </div>
+        <div class="personality-card" data-aos="fade-up" data-aos-duration="600" data-aos-delay="200">
+          <svg viewBox="0 0 512 512">
+            <path d="M255.5 
+                     56c38.6 0 70 
+                     31.4 70 70c0 38.6-31.4 
+                     70-70 70c-38.6 0-70
+                     -31.4-70-70C185.5 
+                     87.4 216.9 56 255.5 
+                     56zM346.2 440H164.8c
+                     -56.6 0-102.5-45.9
+                     -102.5-102.5c0-45.2
+                     29.2-83.7 69.6-97.3
+                     c19.4 20.4 46.9 33.1
+                     77.6 33.1c30.7 0 
+                     58.2-12.7 77.6
+                     -33.1c40.4 13.6 
+                     69.6 52.1 69.6
+                     97.3C448.7 394.1 
+                     402.8 440 346.2
+                     440z"/>
+          </svg>
+          <h3>Empathy &amp; Collaboration</h3>
+          <p>Excel in team-oriented environments, valuing diverse perspectives and open communication.</p>
+        </div>
+<!-- Add this card AFTER your existing personality-card elements -->
+<div class="personality-card" data-aos="fade-up" data-aos-duration="600" data-aos-delay="300">
+  <!-- Example icon (handshake). Feel free to replace with any relevant path. -->
+  <svg viewBox="0 0 512 512">
+    <path d="M0 136.9c0-22.1 
+             17.9-40 40-40h33.7c
+             10 0 19.3 4.2 25.7
+             11.6l27.6 30.3 
+             54.6-19.3c4.1
+             -1.4 8.5-2.1 
+             12.9-2.1h48.7c
+             8.5 0 16.6 3.4
+             22.6 9.4l89.4
+             89.4c12.5
+             12.5 12.5
+             32.8 0
+             45.3l-89.4
+             89.4c-6
+             6-14.1 9.4
+             -22.6 9.4H176
+             c-5.7 0
+             -11.3-1.2
+             -16.4-3.4
+             l-68.3-28.3
+             -27.6
+             30.3c-6.3
+             7.4-15.7
+             11.6-25.7
+             11.6H40c
+             -22.1 0
+             -40-17.9
+             -40-40
+             V136.9z"/>
+  </svg>
+  <h3>Customer-Centric Mindset</h3>
+  <p>
+    I ensure the user’s perspective is central to each solution, 
+    prioritizing a positive experience and strong relationships.
+  </p>
+</div>
+
+      </div>
+
+    </section>
+
+    <!-- Contact Me -->
+    <section id="contact" data-aos="fade-up" data-aos-duration="700">
+      <div class="section-heading">
+        <svg viewBox="0 0 512 512">
+          <path d="M502.3 190.8 
+                   327.4 338c
+                   -15.3 13.6
+                   -38.5 13.6
+                   -53.8 0L9.7
+                   190.8C3.7
+                   185.8 0
+                   178.7 0
+                   171.3V128c
+                   0-35.3
+                   28.7-64
+                   64-64H448c
+                   35.3 0
+                   64 28.7
+                   64 64v43.3c0
+                   7.4-3.7
+                   14.6-9.7
+                   19.5zM320
+                   287.5l182.4
+                   154.2c7.1
+                   6 9.6
+                   15.7 6.2
+                   24.3S496
+                   480 488
+                   480H24c
+                   -8 0
+                   -15.3-4.9
+                   -18.6-12.1s
+                   -.9-18.3
+                   6.2-24.3
+                   L214.4
+                   287.5l20.5
+                   17.3c22.1
+                   18.7 54.6
+                   18.7 76.7
+                   0l20.5
+                   -17.3z"/>
+        </svg>
+        <h2>Contact Me</h2>
+      </div>
+      <p>
+        Interested in collaborating or have any questions?  
+        Feel free to reach out via LinkedIn or email at info@adeelh.com
+      </p>
+    </section>
+  </main>
+
+  <!-- Go to Top Button -->
+  <button id="goTopBtn" onclick="scrollToTop()">
+    <svg viewBox="0 0 448 512"><path d="M201.4 73.9c6.2-6.2 
+      16.4-6.2 22.6 0l128 128c6.2 
+      6.2 6.2 16.4 0 22.6s-16.4 
+      6.2-22.6 0L240 134.6V432c0 
+      8.8-7.2 16-16 16s-16-7.2-16
+      -16V134.6l-89.4 89.4c-6.2 
+      6.2-16.4 6.2-22.6 0s-6.2
+      -16.4 0-22.6l128-128z" /></svg>
+    <span>Top</span>
+  </button>
+
+  <!-- AOS Library and Initialization -->
+  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+  <script>
+    AOS.init({
+      once: false,   // Whether animation should happen only once
+      mirror: false, // Whether elements should animate out while scrolling past them
+    });
+  </script>
+
+  <script>
+    // Dark mode toggle
+    const toggle = document.getElementById('darkModeToggle');
+    toggle.addEventListener('change', function() {
+      document.body.classList.toggle('dark-mode', this.checked);
+    });
+
+    // Animated Skill Meters (Implementation #6)
+    // Trigger filling when the competencies section is in view
+    const skillMeterFills = document.querySelectorAll('.skill-meter-fill');
+    function animateSkillMeters() {
+      skillMeterFills.forEach(fill => {
+        const targetWidth = fill.getAttribute('data-fill');
+        fill.style.width = targetWidth;
+      });
+    }
+
+    // Observe the competencies section
+    const competenciesSection = document.getElementById('competencies');
+    const observer = new IntersectionObserver((entries) => {
+      if (entries[0].isIntersecting) {
+        animateSkillMeters();
+        observer.unobserve(competenciesSection);
+      }
+    }, { threshold: 0.2 });
+    observer.observe(competenciesSection);
+
+    // Tech Trivia Quiz
+    function checkQuizAnswers() {
+      const answers = {
+        q1: 'FaaS',
+        q2: 'Fake login pages',
+        q3: 'Reserved Instances'
+      };
+
+      let score = 0;
+      for (let [key, correct] of Object.entries(answers)) {
+        const chosen = document.querySelector(`input[name="${key}"]:checked`);
+        if (chosen && chosen.value === correct) {
+          score++;
+        }
+      }
+      alert(`You got ${score} out of ${Object.keys(answers).length} correct!`);
+    }
+
+    // Scroll to Top Button
+    function scrollToTop() {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+  </script>
+</body>
+</html>
